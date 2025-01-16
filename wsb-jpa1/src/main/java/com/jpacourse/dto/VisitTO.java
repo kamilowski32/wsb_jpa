@@ -1,17 +1,18 @@
 package com.jpacourse.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
+import com.jpacourse.persistence.enums.TreatmentType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class VisitTO implements Serializable {
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+public class VisitTO implements Serializable
+{
     private LocalDateTime time;
     private String doctorFirstName;
     private String doctorLastName;
-    private List<String> medicalTreatments;
+    private List<TreatmentType> treatments;
 
     public LocalDateTime getTime() {
         return time;
@@ -37,12 +38,11 @@ public class VisitTO implements Serializable {
         this.doctorLastName = doctorLastName;
     }
 
-    public List<String> getMedicalTreatments() {
-        return medicalTreatments;
+    public List<TreatmentType> getTreatments() {
+        return treatments;
     }
 
-    public void setMedicalTreatments(List<String> medicalTreatments) {
-        this.medicalTreatments = medicalTreatments;
+    public void setTreatments(List<TreatmentType> treatments) {
+        this.treatments = treatments;
     }
-
 }

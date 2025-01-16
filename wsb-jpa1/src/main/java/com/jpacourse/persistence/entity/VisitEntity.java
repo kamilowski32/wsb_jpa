@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "VISIT")
 public class VisitEntity {
@@ -26,7 +27,7 @@ public class VisitEntity {
 	@JoinColumn(name = "patientId", nullable = false)
 	private DoctorEntity doctor;
 
-	@OneToMany(mappedBy = "visit", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "visit", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<MedicalTreatmentEntity> treatments;
 
 	public Long getId() {
@@ -53,16 +54,27 @@ public class VisitEntity {
 		this.time = time;
 	}
 
-	public PatientEntity getPatient() {return this.patient;}
+	public PatientEntity getPatient() {
+		return patient;
+	}
 
-	public void setPatient(PatientEntity patient) {this.patient = patient;}
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
 
-	public DoctorEntity getDoctor() {return this.doctor;}
+	public DoctorEntity getDoctor() {
+		return doctor;
+	}
 
-	public void setDoctor(DoctorEntity doctor) {this.doctor = doctor;}
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctor = doctor;
+	}
 
-	public List<MedicalTreatmentEntity> getTreatments() {return this.treatments;}
+	public List<MedicalTreatmentEntity> getTreatments() {
+		return treatments;
+	}
 
-	public void setTreatments(List<MedicalTreatmentEntity> treatments) {this.treatments = treatments;}
-
+	public void setTreatments(List<MedicalTreatmentEntity> treatments) {
+		this.treatments = treatments;
+	}
 }

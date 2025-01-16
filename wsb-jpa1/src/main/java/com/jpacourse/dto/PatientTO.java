@@ -1,6 +1,5 @@
 package com.jpacourse.dto;
 
-import com.jpacourse.persistence.entity.AddressEntity;
 import com.jpacourse.persistence.enums.Gender;
 
 import java.io.Serializable;
@@ -9,33 +8,18 @@ import java.util.List;
 
 public class PatientTO implements Serializable
 {
+
     private Long id;
-
     private String firstName;
-
     private String lastName;
-
     private String telephoneNumber;
-
     private String email;
-
     private String patientNumber;
-
     private LocalDate dateOfBirth;
-
-    private AddressEntity address;
-
-    private List<VisitTO> visits;
-
     private Gender gender;
+    private List<VisitTO> visits;
+    private AddressTO address;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public Long getId() {
         return id;
@@ -69,6 +53,14 @@ public class PatientTO implements Serializable
         this.telephoneNumber = telephoneNumber;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPatientNumber() {
         return patientNumber;
     }
@@ -85,12 +77,12 @@ public class PatientTO implements Serializable
         this.dateOfBirth = dateOfBirth;
     }
 
-    public AddressEntity getAddress() {
-        return address;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setAddress(AddressEntity address) {
-        this.address = address;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public List<VisitTO> getVisits() {
@@ -101,11 +93,11 @@ public class PatientTO implements Serializable
         this.visits = visits;
     }
 
-    public Gender getGender() {
-        return gender;
+    public AddressTO getAddress() {
+        return address;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setAddress(AddressTO address) {
+        this.address = address;
     }
 }

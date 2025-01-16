@@ -2,6 +2,7 @@ package com.jpacourse.persistence.entity;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "ADDRESS")
 public class AddressEntity {
@@ -57,5 +58,4 @@ public class AddressEntity {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-
 }

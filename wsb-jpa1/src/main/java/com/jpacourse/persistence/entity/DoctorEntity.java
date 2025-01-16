@@ -5,6 +5,7 @@ import com.jpacourse.persistence.enums.Specialization;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
 @Table(name = "DOCTOR")
 public class DoctorEntity {
@@ -24,20 +25,20 @@ public class DoctorEntity {
 
 	private String email;
 
-	@Column(nullable = false)
+
+    @Column(nullable = false)
 	private String doctorNumber;
 
-	@Column(nullable = false)
+    @Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "addressId", referencedColumnName = "id")
 	private AddressEntity address;
 
-	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VisitEntity> visits;
-
 
 	public Long getId() {
 		return id;
@@ -93,5 +94,21 @@ public class DoctorEntity {
 
 	public void setSpecialization(Specialization specialization) {
 		this.specialization = specialization;
+	}
+
+	public AddressEntity getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressEntity address) {
+		this.address = address;
+	}
+
+	public List<VisitEntity> getVisits() {
+		return visits;
+	}
+
+	public void setVisits(List<VisitEntity> visits) {
+		this.visits = visits;
 	}
 }

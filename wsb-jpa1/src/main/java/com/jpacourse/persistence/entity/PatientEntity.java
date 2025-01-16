@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "PATIENT")
 public class PatientEntity {
@@ -24,6 +25,7 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private String telephoneNumber;
 
+	@Column(nullable = false)
 	private String email;
 
 	@Column(nullable = false)
@@ -32,17 +34,16 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	private Gender gender;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "addressId", referencedColumnName = "id")
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private AddressEntity addressEntity;
 
-	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VisitEntity> visits;
 
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
 
 	public Long getId() {
 		return id;
@@ -100,15 +101,27 @@ public class PatientEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Gender getGender() {return this.gender;}
+	public AddressEntity getAddressEntity() {
+		return addressEntity;
+	}
 
-	public void setGender(Gender gender) {this.gender = gender;}
+	public void setAddressEntity(AddressEntity addressEntity) {
+		this.addressEntity = addressEntity;
+	}
 
-	public AddressEntity getAddress() {return this.addressEntity;}
+	public List<VisitEntity> getVisits() {
+		return visits;
+	}
 
-	public void setAddress(AddressEntity addressEntity) {this.addressEntity = addressEntity;}
+	public void setVisits(List<VisitEntity> visits) {
+		this.visits = visits;
+	}
 
-	public List<VisitEntity> getVisits() {return this.visits;}
+	public Gender getGender() {
+		return gender;
+	}
 
-	public void setVisits(List<VisitEntity> visits) {this.visits = visits;}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 }
